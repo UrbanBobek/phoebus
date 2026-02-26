@@ -1,5 +1,7 @@
 package org.phoebus.applications.errlog;
 
+import org.phoebus.ui.javafx.Styles;
+
 import java.util.stream.Collectors;
 
 import javafx.application.Platform;
@@ -12,7 +14,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.paint.Color;
 
 /** JavaFX view of lines
  *
@@ -49,9 +50,9 @@ class LineView
             {
                 setText(item.text);
                 if (item.error)
-                    setTextFill(Color.DARKRED);
+                    Styles.set(this, "error-text");
                 else
-                    setTextFill(Color.BLACK);
+                    Styles.clear(this, "error-text");
             }
         }
     }

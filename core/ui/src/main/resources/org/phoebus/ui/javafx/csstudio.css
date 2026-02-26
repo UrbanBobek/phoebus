@@ -60,3 +60,12 @@
     visibility: hidden;
 }
 
+/** Text color for labels for required field, form validation  */
+.validation-error-text {
+    -fx-text-fill: red;
+}
+
+.error-text {
+    -fx-text-fill: darkred;
+}
+
