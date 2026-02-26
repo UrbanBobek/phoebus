@@ -191,3 +191,21 @@
 .code-dialog {
     -fx-font-family: monospace !important;
 }
+
+/** WidgetTree text color for widgets with parse errors */
+.dirty-widget-text {
+    -fx-text-fill: red;
+}
+
+/** WidgetTree indicator overlay for widgets with parse errors */
+.dirty-widget-indicator {
+    -fx-stroke: red;
+    -fx-stroke-width: 2;
+    -fx-fill: rgba(255, 0, 0, 0.5);
+}
+
+/** WidgetTree indicator lines for hidden (visibility=false) widgets */
+.hidden-widget-indicator {
+    -fx-stroke: red;
+    -fx-stroke-width: 2;
+}

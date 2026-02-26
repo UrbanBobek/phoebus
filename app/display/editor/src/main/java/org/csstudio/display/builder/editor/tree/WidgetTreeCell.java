@@ -20,13 +20,13 @@ import org.phoebus.framework.macros.Macros;
 import org.phoebus.ui.javafx.ImageCache;
 import org.phoebus.ui.undo.UndoableAction;
 import org.phoebus.ui.undo.UndoableActionManager;
+import org.phoebus.ui.javafx.Styles;
 
 import javafx.scene.Node;
 import javafx.scene.control.cell.TextFieldTreeCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.StringConverter;
@@ -97,8 +97,9 @@ class WidgetTreeCell extends TextFieldTreeCell<WidgetOrTab>
             final Widget widget = item.getWidget();
             final String type = widget.getType();
             setText(widget.getName());
+            Styles.clear(this, "dirty-widget-text");
             if (widget.isClean() == false)
-                setTextFill(Color.RED);
+                Styles.set(this, "dirty-widget-text");
 
             final Image icon = WidgetIcons.getIcon(type);
             Node graphic = null;
@@ -110,9 +111,7 @@ class WidgetTreeCell extends TextFieldTreeCell<WidgetOrTab>
                     final double w = icon.getWidth();
                     final double h = icon.getHeight();
                     final Rectangle rect = new Rectangle(0, 0, w, h);
-                    rect.setStroke(Color.RED);
-                    rect.setStrokeWidth(2);
-                    rect.setFill(Color.rgb(255, 0, 0, 0.5));
+                    rect.getStyleClass().add("dirty-widget-indicator");
                     graphic = new StackPane(rect, graphic);
                 }
 
@@ -125,10 +124,8 @@ class WidgetTreeCell extends TextFieldTreeCell<WidgetOrTab>
                         final double h = icon.getHeight();
                         final Line l1 = new Line(0, 0, w, h);
                         final Line l2 = new Line(0, h, w, 0);
-                        l1.setStroke(Color.RED);
-                        l2.setStroke(Color.RED);
-                        l1.setStrokeWidth(2);
-                        l2.setStrokeWidth(2);
+                        l1.getStyleClass().add("hidden-widget-indicator");
+                        l2.getStyleClass().add("hidden-widget-indicator");
                         graphic = new StackPane(graphic, l1, l2);
                     }
                 }
